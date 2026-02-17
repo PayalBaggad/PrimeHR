@@ -1,115 +1,55 @@
 /**
- * Ribbon-style Fluid Smoke Effect for PrimeHR
- * High-fidelity wispy filaments with additive blending
+ * Optimized Nebula Web Cursor Effect for PrimeHR
+ * High-performance node-link network with proximity optimization
  */
 
-class RibbonStrand {
+class WebNode {
     constructor(x, y, color) {
-        this.points = [{ x, y }];
-        this.color = color;
-        this.life = 1.0;
-        this.decay = Math.random() * 0.01 + 0.005;
-        this.maxWidth = Math.random() * 15 + 5;
-
-        // Random offsets for curliness
-        this.offsetSpeed = Math.random() * 0.02;
-        this.offsetPhase = Math.random() * Math.PI * 2;
-        this.curlAmount = Math.random() * 2 + 1;
-    }
-
-    update(mouseX, mouseY, time) {
-        // Move towards mouse with easing
-        const lastPoint = this.points[0];
-        const dx = mouseX - lastPoint.x;
-        const dy = mouseY - lastPoint.y;
-
-        // Add curl/noise
-        const cx = Math.sin(time * this.offsetSpeed + this.offsetPhase) * this.curlAmount;
-        const cy = Math.cos(time * this.offsetSpeed + this.offsetPhase) * this.curlAmount;
-
-        const newX = lastPoint.x + dx * 0.15 + cx;
-        const newY = lastPoint.y + dy * 0.15 + cy;
-
-        this.points.unshift({ x: newX, y: newY });
-
-        if (this.points.length > 50) {
-            this.points.pop();
-        }
-
-        this.life -= this.decay;
-    }
-
-    draw(ctx) {
-        if (this.points.length < 2 || this.life <= 0) return;
-
-        ctx.save();
-        ctx.globalCompositeOperation = 'screen';
-
-        ctx.beginPath();
-        ctx.moveTo(this.points[0].x, this.points[0].y);
-
-        for (let i = 1; i < this.points.length; i++) {
-            const opacity = (1 - i / this.points.length) * this.life;
-            const width = (1 - i / this.points.length) * this.maxWidth;
-
-            ctx.strokeStyle = this.color.replace('opacity', opacity * 0.4);
-            ctx.lineWidth = width;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-
-            ctx.lineTo(this.points[i].x, this.points[i].y);
-            // We stroke each segment or the whole path with a gradient? 
-            // Better to stroke in chunks for gradient effect
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(this.points[i].x, this.points[i].y);
-        }
-
-        ctx.restore();
-    }
-}
-
-class Shimmer {
-    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 2 + 0.5;
+        // High velocity as requested, but optimized update logic
+        this.vx = (Math.random() - 0.5) * 8;
+        this.vy = (Math.random() - 0.5) * 8 - 2;
+        this.baseColor = color; // Expecting 'r, g, b' string
         this.life = 1.0;
-        this.decay = Math.random() * 0.03 + 0.01;
-        this.vx = (Math.random() - 0.5) * 2;
-        this.vy = (Math.random() - 0.5) * 2;
+        this.decay = Math.random() * 0.05 + 0.03;
+        this.size = Math.random() * 2 + 1;
     }
+
     update() {
-        this.x += this.vx; this.y += this.vy;
+        this.x += this.vx;
+        this.y += this.vy;
         this.life -= this.decay;
+        this.vx *= 0.98;
+        this.vy *= 0.98;
     }
+
     draw(ctx) {
-        ctx.globalAlpha = this.life;
-        ctx.fillStyle = '#FFFFFF';
+        // REMOVED shadowBlur for performance - it's a huge GPU killer
+        ctx.fillStyle = `rgba(${this.baseColor}, ${this.life})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
     }
 }
 
-function initRibbonEffect() {
+function initNebulaWeb() {
     const canvas = document.getElementById('smokeCanvas');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     const hero = document.getElementById('hero');
-    let strands = [];
-    let shimmers = [];
+    let nodes = [];
     let mouseX = 0;
     let mouseY = 0;
     let isMoving = false;
 
-    // Mixed Palette for richness
+    // Palette: Cyan, Magenta, Blue, White (Strips the rgba formatting for optimization)
     const colors = [
-        'rgba(138, 43, 226, opacity)', // BlueViolet
-        'rgba(153, 50, 204, opacity)', // DarkOrchid
-        'rgba(59, 21, 58, opacity)',   // Plum
-        'rgba(218, 112, 214, opacity)'  // Orchid
+        '0, 255, 255',   // Cyan
+        '255, 0, 255',   // Magenta
+        '65, 105, 225',  // Royal Blue
+        '255, 255, 255'  // White
     ];
 
     function resize() {
@@ -121,19 +61,18 @@ function initRibbonEffect() {
     window.addEventListener('resize', resize);
     resize();
 
-    // Init strands
-    for (let i = 0; i < 6; i++) {
-        strands.push(new RibbonStrand(0, 0, colors[i % colors.length]));
-    }
-
     hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
         isMoving = true;
 
-        if (Math.random() > 0.8) {
-            shimmers.push(new Shimmer(mouseX, mouseY));
+        // Balanced spawn rate for performance vs density
+        if (nodes.length < 120) {
+            for (let i = 0; i < 3; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                nodes.push(new WebNode(mouseX, mouseY, color));
+            }
         }
     });
 
@@ -141,27 +80,54 @@ function initRibbonEffect() {
         isMoving = false;
     });
 
-    function animate(time) {
+    function drawConnections() {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        const maxDistSq = 10000; // 100px squared (avoiding Math.sqrt)
+
+        for (let i = 0; i < nodes.length; i++) {
+            const nodeA = nodes[i];
+            for (let j = i + 1; j < nodes.length; j++) {
+                const nodeB = nodes[j];
+                const dx = nodeA.x - nodeB.x;
+                const dy = nodeA.y - nodeB.y;
+                const distSq = dx * dx + dy * dy;
+
+                if (distSq < maxDistSq) {
+                    const dist = Math.sqrt(distSq);
+                    const opacity = (1 - dist / 100) * Math.min(nodeA.life, nodeB.life) * 0.4;
+                    ctx.strokeStyle = `rgba(${nodeA.baseColor}, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(nodeA.x, nodeA.y);
+                    ctx.lineTo(nodeB.x, nodeB.y);
+                    ctx.stroke();
+                }
+            }
+        }
+        ctx.restore();
+    }
+
+    function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        strands.forEach(s => {
-            if (isMoving) {
-                s.life = 1.0; // Keep alive while moving
-            }
-            s.update(mouseX, mouseY, time);
-            s.draw(ctx);
-        });
+        // Update and draw nodes
+        for (let i = nodes.length - 1; i >= 0; i--) {
+            const node = nodes[i];
+            node.update();
+            node.draw(ctx);
+            if (node.life <= 0) nodes.splice(i, 1);
+        }
 
-        for (let i = shimmers.length - 1; i >= 0; i--) {
-            shimmers[i].update();
-            shimmers[i].draw(ctx);
-            if (shimmers[i].life <= 0) shimmers.splice(i, 1);
+        // Draw connections only if we have nodes to save CPU
+        if (nodes.length > 1) {
+            drawConnections();
         }
 
         requestAnimationFrame(animate);
     }
 
-    animate(0);
+    animate();
 }
 
-document.addEventListener('DOMContentLoaded', initRibbonEffect);
+document.addEventListener('DOMContentLoaded', initNebulaWeb);
