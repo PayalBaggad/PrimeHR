@@ -7,13 +7,17 @@ class WebNode {
     constructor(x, y, color) {
         this.x = x;
         this.y = y;
-        // High velocity as requested, but optimized update logic
-        this.vx = (Math.random() - 0.5) * 8;
-        this.vy = (Math.random() - 0.5) * 8 - 2;
+        // Radial burst: particles explode in all directions evenly
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 6 + 2;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
         this.baseColor = color; // Expecting 'r, g, b' string
         this.life = 1.0;
-        this.decay = Math.random() * 0.05 + 0.03;
-        this.size = Math.random() * 2 + 1;
+        // Slightly slower decay for better visibility
+        this.decay = Math.random() * 0.04 + 0.02;
+        // Increased size for clarity
+        this.size = Math.random() * 3 + 1.5;
     }
 
     update() {
@@ -83,7 +87,8 @@ function initNebulaWeb() {
     function drawConnections() {
         ctx.save();
         ctx.globalCompositeOperation = 'screen';
-        const maxDistSq = 10000; // 100px squared (avoiding Math.sqrt)
+        const maxDistSq = 14400; // 120px squared for better reach
+        const maxDist = 120;
 
         for (let i = 0; i < nodes.length; i++) {
             const nodeA = nodes[i];
@@ -95,9 +100,9 @@ function initNebulaWeb() {
 
                 if (distSq < maxDistSq) {
                     const dist = Math.sqrt(distSq);
-                    const opacity = (1 - dist / 100) * Math.min(nodeA.life, nodeB.life) * 0.4;
+                    const opacity = (1 - dist / maxDist) * Math.min(nodeA.life, nodeB.life) * 0.6;
                     ctx.strokeStyle = `rgba(${nodeA.baseColor}, ${opacity})`;
-                    ctx.lineWidth = 0.5;
+                    ctx.lineWidth = 0.8; // Thicker lines for clarity
                     ctx.beginPath();
                     ctx.moveTo(nodeA.x, nodeA.y);
                     ctx.lineTo(nodeB.x, nodeB.y);

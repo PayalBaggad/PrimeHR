@@ -740,3 +740,77 @@
 .section-light .cta-note {
     color: #4A3D56 !important;
 }
+
+/* Pricing Toggle Switch Theme */
+.pricing-toggle .toggle-switch {
+    width: 90px !important;
+    height: 44px !important;
+    background: linear-gradient(180deg, #FAD7A1 0%, #F0C987 50%, #D4A73B 100%) !important;
+    border: 3px solid #E5E4E2 !important;
+    /* Metallic Chrome border */
+    border-radius: 22px !important;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8),
+        0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+    position: relative;
+    padding: 0 !important;
+}
+
+.pricing-toggle .toggle-switch.active {
+    /* Maintain the glossy orange even when active, or update if desired */
+    background: linear-gradient(180deg, #FAD7A1 0%, #F0C987 50%, #D4A73B 100%) !important;
+}
+
+/* Slider is now just the icon container - NO BACKGROUND or CIRCLE */
+.pricing-toggle .toggle-slider {
+    position: absolute !important;
+    top: 50% !important;
+    left: 4px !important;
+    width: 34px !important;
+    height: 34px !important;
+    margin-top: -17px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+}
+
+/* Walking Person Icon on Slider */
+.pricing-toggle .toggle-slider::after {
+    content: '';
+    display: block;
+    /* Ensure it's rendered as a block */
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 50%;
+    left: 50%;
+    margin-top: -14px;
+    margin-left: -14px;
+    /* User-provided walking person icon */
+    background-image: url("images/toggle-person.png") !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10;
+    /* Bring to front */
+}
+
+/* Monthly state: facing right (towards Annual) */
+.pricing-toggle .toggle-slider::after {
+    transform: scaleX(1);
+}
+
+/* Annual state: flip to face left (towards Monthly) */
+.pricing-toggle .toggle-switch.active .toggle-slider::after {
+    transform: scaleX(-1);
+    /* Icon remains dark for contrast on orange */
+}
+
+/* Active State movement for icon */
+.pricing-toggle .toggle-switch.active .toggle-slider {
+    transform: translateX(44px) !important;
+}
