@@ -767,80 +767,14 @@
     position: absolute !important;
     top: 50% !important;
     left: 4px !important;
-    width: 34px !important;
-    height: 34px !important;
-    margin-top: -17px !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: -16px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     overflow: visible !important;
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
-}
-
-/* Walking Person Icon on Slider */
-.pricing-toggle .toggle-slider::after {
-    content: '';
-    display: block;
-    /* Ensure it's rendered as a block */
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    top: 50%;
-    left: 50%;
-    margin-top: -14px;
-    margin-left: -14px;
-    /* User-provided walking person icon */
-    background-image: url("images/toggle-person.png") !important;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* Delay the scale (flip) until horizontal movement (transform) is nearly done */
-    transition:
-        transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-        scale 0.2s 0.35s;
-    z-index: 10;
-}
-
-/* Walk Cycle Keyframes - Bob and Rock */
-@keyframes walk-cycle {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    25% {
-        transform: translateY(-4px) rotate(5deg);
-    }
-
-    50% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    75% {
-        transform: translateY(-4px) rotate(-5deg);
-    }
-
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
-}
-
-/* Apply walking animation when the state changes */
-.pricing-toggle .toggle-switch:not(:disabled) .toggle-slider::after {
-    /* This animation will re-trigger on class change because of how CSS animations interact with pseudo-elements */
-    animation: walk-cycle 0.4s ease-in-out;
-}
-
-/* Monthly state: facing right (ready to walk to Annual) */
-.pricing-toggle .toggle-slider::after {
-    /* Base transform is handled by the walk-cycle animation during transition,
-       but we need to maintain the flip state */
-    scale: 1 1;
-}
-
-/* Annual state: flips to face left AFTER reaching position */
-.pricing-toggle .toggle-switch.active .toggle-slider::after {
-    scale: -1 1;
-    /* Icon remains dark for contrast on orange */
 }
 
 /* Active State movement for icon */

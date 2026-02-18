@@ -1584,21 +1584,24 @@ h6 {
 }
 
 .toggle-label.active {
-    color: var(--primary-600);
-    font-weight: 600;
-    background: var(--primary-100);
+    color: #FF8F00;
+    font-weight: 700;
+    background: #FFF9C4;
+    box-shadow: 0 2px 4px rgba(255, 179, 0, 0.1);
 }
 
 .toggle-switch {
     width: 80px;
     height: 40px;
-    background: linear-gradient(90deg, #FF8C42 0%, #FFA500 30%, #FFB347 60%, #FFC04D 100%);
+    background: linear-gradient(135deg, #FFB300 0%, #FF8F00 100%);
     border-radius: var(--radius-full);
-    border: none;
+    border: 2px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
     position: relative;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(255, 140, 66, 0.3);
 }
 
 .toggle-switch:hover {
@@ -1607,50 +1610,70 @@ h6 {
 }
 
 .toggle-switch.active {
-    background: linear-gradient(90deg, #5D4037 0%, #6D4C41 25%, #8D6E63 50%, #A1887F 75%, #D4AF37 100%);
-    border: none;
-    box-shadow: 0 6px 16px rgba(93, 64, 55, 0.3);
+    background: linear-gradient(135deg, #FFD54F 0%, #FFB300 100%);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 6px 16px rgba(255, 179, 0, 0.4);
 }
 
 .toggle-slider {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background: linear-gradient(145deg, #FFFFFF 0%, #F5F5F5 50%, #E8E8E8 100%);
     border-radius: 50%;
-    border: 3px solid #FF8C42;
+    border: 2px solid #FF8C42;
     box-shadow:
-        0 6px 15px rgba(255, 140, 66, 0.7),
-        0 3px 8px rgba(0, 0, 0, 0.3),
-        0 0 25px rgba(255, 165, 0, 0.6),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.15),
-        inset 0 3px 6px rgba(255, 255, 255, 0.8);
+        0 4px 10px rgba(0, 0, 0, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
-.toggle-slider::before {
-    content: '';
-    font-size: 12px;
-    font-weight: 700;
-    color: transparent;
-    transition: all var(--transition-base);
+.emoji {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    position: absolute;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.emoji-monthly {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.emoji-annual {
+    opacity: 0;
+    transform: scale(0.5);
 }
 
 .toggle-switch.active .toggle-slider {
     transform: translateX(40px);
-    border: 3px solid #FFB300;
-    background: linear-gradient(145deg, #FFFFFF 0%, #F5F5F5 50%, #E8E8E8 100%);
-    box-shadow:
-        0 6px 15px rgba(255, 179, 0, 0.8),
-        0 3px 8px rgba(0, 0, 0, 0.3),
-        0 0 25px rgba(255, 179, 0, 0.7),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.15),
-        inset 0 3px 6px rgba(255, 255, 255, 0.8);
+    border: 2px solid #FFB300;
+}
+
+.toggle-switch.active .emoji-monthly {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.toggle-switch.active .emoji-annual {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.toggle-slider::before {
+    display: none;
 }
 
 .toggle-switch.active .toggle-slider::before {

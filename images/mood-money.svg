@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="black"/>
+  <!-- Dollar eyes -->
+  <text x="22" y="45" font-family="Arial, sans-serif" font-size="32" font-weight="900" fill="white">$</text>
+  <text x="62" y="45" font-family="Arial, sans-serif" font-size="32" font-weight="900" fill="white">$</text>
+  <!-- Wide Mouth -->
+  <path d="M22 62 Q50 85 78 62 Z" fill="white"/>
+  <!-- Green Tongue -->
+  <path d="M35 70 Q50 105 65 70 Z" fill="#10b981"/>
+  <!-- Dollar on tongue -->
+  <text x="42" y="88" font-family="Arial, sans-serif" font-size="18" font-weight="900" fill="white">$</text>
+</svg>
