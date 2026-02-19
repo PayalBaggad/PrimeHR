@@ -1584,9 +1584,9 @@ h6 {
 }
 
 .toggle-label.active {
-    color: #FF8F00;
+    color: #fd9002;
     font-weight: 700;
-    background: #FFF9C4;
+    background: #fffbd8;
     box-shadow: 0 2px 4px rgba(255, 179, 0, 0.1);
 }
 
@@ -1595,7 +1595,7 @@ h6 {
     height: 40px;
     background: linear-gradient(135deg, #FFB300 0%, #FF8F00 100%);
     border-radius: var(--radius-full);
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 3, 3, 0.1);
     cursor: pointer;
     position: relative;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1638,8 +1638,8 @@ h6 {
 }
 
 .emoji {
-    width: 24px;
-    height: 24px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
     position: absolute;
     transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);

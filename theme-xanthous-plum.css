@@ -176,6 +176,15 @@
     background-clip: text;
 }
 
+/* Darker amber-yellow gradient for spans in light sections (e.g. "Run Payroll", "3 Simple Steps", "Pricing") */
+.gradient-text2 {
+    background: linear-gradient(135deg, #e0b700 0%, #e7ac07 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: inherit;
+}
+
 .hero-title .gradient-text {
     background: linear-gradient(135deg, #FFF3CC 0%, #F0C987 50%, #E6B84D 100%);
     -webkit-background-clip: text;
@@ -193,7 +202,7 @@
 .section-light .section-badge {
     background: #3B153A !important;
     color: #F0C987 !important;
-    border: 2px inset #F0C987 !important;
+    border: none !important;
 }
 
 .section-dark .section-badge {
@@ -702,24 +711,20 @@
 
 /* Ensure consistent button visibility and 3D effect */
 .section-light .cta-form .btn-primary {
-    background: linear-gradient(135deg, #3B153A 0%, #2D0F29 100%);
+    background: linear-gradient(135deg, #61295f 0%, #45153e 100%);
     color: #F0C987;
     border: none;
     position: relative;
-    /* 3D Depth Shadow */
     box-shadow:
-        0 4px 0 #1A0A19,
-        /* Bottom depth shadow */
-        0 8px 15px rgba(59, 21, 58, 0.3);
-    /* Soft floor shadow */
+        0 4px 0 #9c6e9d,
+        0 8px 15px rgba(97, 41, 95, 0.4);
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    /* Subtle top highlight */
 }
 
 .section-light .cta-form .btn-primary:hover {
-    background: linear-gradient(135deg, #4A1B49 0%, #3B153A 100%);
+    background: linear-gradient(135deg, #9d469b 0%, #53234c 100%);
     transform: translateY(-2px);
     box-shadow:
         0 6px 0 #1A0A19,
@@ -779,4 +784,322 @@
 /* Active State movement for icon */
 .pricing-toggle .toggle-switch.active .toggle-slider {
     transform: translateX(44px) !important;
+}
+
+/* ===================================
+   RESPONSIVE - TABLET (max 1024px)
+   =================================== */
+@media (max-width: 1024px) {
+
+    /* Hero */
+    .hero-container {
+        gap: 40px;
+        padding: 0 24px;
+    }
+
+    .hero-content {
+        max-width: 55%;
+    }
+
+    /* Grids */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+    }
+
+    .integrations-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr !important;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* ===================================
+   RESPONSIVE - MOBILE (max 768px)
+   =================================== */
+@media (max-width: 768px) {
+
+    /* ---- Navbar ---- */
+    .mobile-menu-btn {
+        display: flex !important;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #3B153A !important;
+        flex-direction: column;
+        gap: 0 !important;
+        padding: 16px 0 !important;
+        border-bottom: 2px solid rgba(240, 201, 135, 0.3);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+        z-index: 999;
+    }
+
+    .nav-links.mobile-open {
+        display: flex !important;
+        background: #3B153A !important;
+        top: 100% !important;
+        padding: 16px 0 !important;
+        gap: 0 !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 14px 24px !important;
+        color: #F0C987 !important;
+        font-size: 16px !important;
+        border-bottom: 1px solid rgba(240, 201, 135, 0.1);
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .nav-actions .btn-ghost {
+        display: none;
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+        padding: 100px 0 60px;
+        min-height: auto;
+    }
+
+    .hero-container {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 32px;
+        padding: 0 16px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 100% !important;
+    }
+
+    .hero-title {
+        font-size: clamp(28px, 8vw, 42px) !important;
+    }
+
+    .hero-description {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .hero-badge {
+        margin: 0 auto 24px;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* ---- Section headers ---- */
+    .section-header {
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .section-title {
+        font-size: clamp(24px, 6vw, 36px) !important;
+    }
+
+    .section-description {
+        font-size: 14px !important;
+    }
+
+    /* ---- Features ---- */
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .feature-card {
+        padding: 24px !important;
+    }
+
+    /* ---- Steps (How It Works) ---- */
+    .steps-container {
+        flex-direction: column !important;
+        gap: 32px;
+        max-width: 100%;
+    }
+
+    .step {
+        flex-direction: column !important;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .step-line {
+        display: none !important;
+    }
+
+    /* ---- Integrations ---- */
+    .integrations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px;
+    }
+
+    /* ---- Pricing ---- */
+    .pricing-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .pricing-toggle {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    /* ---- Testimonials ---- */
+    .testimonials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* ---- Upcoming Features ---- */
+    .upcoming-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* ---- CTA ---- */
+    .cta-content {
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .cta-form .form-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cta-form .form-group input {
+        width: 100%;
+        border-radius: 10px !important;
+    }
+
+    .cta-form .btn-primary {
+        width: 100%;
+        border-radius: 10px !important;
+    }
+
+    /* ---- Blobs — hide on mobile to avoid overflow ---- */
+    .bg-blob {
+        display: none;
+    }
+
+    /* ---- Section padding ---- */
+    .section-light,
+    .section-dark,
+    .features,
+    .upcoming-features,
+    .how-it-works,
+    .integrations,
+    .pricing,
+    .testimonials,
+    .cta {
+        padding: 60px 0 !important;
+    }
+
+    /* ---- Footer ---- */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 8px;
+    }
+}
+
+/* ===================================
+   RESPONSIVE - SMALL PHONES (max 480px)
+   =================================== */
+@media (max-width: 480px) {
+
+    .hero-title {
+        font-size: 26px !important;
+    }
+
+    .section-title {
+        font-size: 22px !important;
+    }
+
+    .integrations-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-stats {
+        gap: 12px;
+    }
+
+    .stat-number {
+        font-size: 20px;
+    }
+
+    .btn-large {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+
+    .brand-logo {
+        height: 38px;
+    }
 }
