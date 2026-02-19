@@ -191,9 +191,9 @@
 }
 
 .section-light .section-badge {
-    background: #3B153A;
-    color: #F0C987;
-    border: 1px solid #2D0F29;
+    background: #3B153A !important;
+    color: #F0C987 !important;
+    border: 2px inset #F0C987 !important;
 }
 
 .section-dark .section-badge {
@@ -514,10 +514,9 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 99;
-    /* Increased to stay on top */
+    z-index: 1;
+    /* Behind hero content (buttons, text, images use z-index: 2 via .container) */
     opacity: 0.8;
-    /* Increased visibility */
 }
 
 /* ===================================
