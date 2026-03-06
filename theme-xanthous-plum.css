@@ -745,45 +745,53 @@
     color: #4A3D56 !important;
 }
 
-/* Pricing Toggle Switch Theme */
+/* Pricing Toggle Switch Theme — Pill with Orange Border */
 .pricing-toggle .toggle-switch {
-    width: 90px !important;
+    width: 100px !important;
     height: 44px !important;
-    background: linear-gradient(180deg, #FAD7A1 0%, #F0C987 50%, #D4A73B 100%) !important;
-    border: 3px solid #E5E4E2 !important;
-    /* Metallic Chrome border */
-    border-radius: 22px !important;
+    background: #ffffff !important;
+    border: 2.5px solid #F0A500 !important;
+    border-radius: 100px !important;
     box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.3),
-        inset 0 1px 2px rgba(255, 255, 255, 0.8),
-        0 0 0 1px rgba(0, 0, 0, 0.1) !important;
-    position: relative;
+        0 2px 10px rgba(240, 165, 0, 0.25) !important;
+    position: relative !important;
     padding: 0 !important;
+    cursor: pointer !important;
+    transition: box-shadow 0.3s ease !important;
+}
+
+.pricing-toggle .toggle-switch:hover {
+    box-shadow:
+        0 4px 18px rgba(240, 165, 0, 0.4) !important;
+    transform: none !important;
 }
 
 .pricing-toggle .toggle-switch.active {
-    /* Maintain the glossy orange even when active, or update if desired */
-    background: linear-gradient(180deg, #FAD7A1 0%, #F0C987 50%, #D4A73B 100%) !important;
+    background: #ffffff !important;
+    border: 2.5px solid #F0A500 !important;
 }
 
-/* Slider is now just the icon container - NO BACKGROUND or CIRCLE */
+/* Slider — the emoji thumb that slides left ↔ right */
 .pricing-toggle .toggle-slider {
     position: absolute !important;
     top: 50% !important;
-    left: 4px !important;
-    width: 32px !important;
-    height: 32px !important;
-    margin-top: -16px !important;
+    left: 0px !important;
+    width: 36px !important;
+    height: 36px !important;
+    margin-top: -18px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     overflow: visible !important;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 }
 
-/* Active State movement for icon */
+/* Active State: emoji moves to the right */
 .pricing-toggle .toggle-switch.active .toggle-slider {
-    transform: translateX(44px) !important;
+    transform: translateX(60px) !important;
 }
 
 /* ===================================
