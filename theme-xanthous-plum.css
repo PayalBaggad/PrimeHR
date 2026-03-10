@@ -272,8 +272,14 @@
 
 /* Feature Icons */
 .section-light .feature-icon {
-    background: linear-gradient(135deg, #FFF9E6 0%, #F5D480 100%);
-    color: #3B153A;
+    /*background: #6E2E6B !important;
+    color: #F0C987 !important;*/
+    background: #f5f0f7 !important;
+    color: #3B153A !important;
+}
+
+.section-light .feature-icon svg {
+    stroke: #3B153A !important;
 }
 
 /* Blobs */
@@ -696,9 +702,9 @@
    =================================== */
 
 .section-light .form-group {
-    background: rgba(59, 21, 58, 0.08);
-    /* Subtle plum tint */
-    border: 1px solid rgba(59, 21, 58, 0.15);
+    background: #ffffff;
+    border: 1.5px solid rgba(212, 167, 59, 0.5);
+    box-shadow: 0 4px 20px rgba(59, 21, 58, 0.08), inset 0 1px 3px rgba(240, 201, 135, 0.15);
 }
 
 .section-light .form-group input {
@@ -706,38 +712,28 @@
 }
 
 .section-light .form-group input::placeholder {
-    color: rgba(59, 21, 58, 0.5) !important;
+    color: rgba(59, 21, 58, 0.4) !important;
 }
 
-/* Ensure consistent button visibility and 3D effect */
+/* Match navbar btn-primary style exactly */
 .section-light .cta-form .btn-primary {
-    background: linear-gradient(135deg, #61295f 0%, #45153e 100%);
-    color: #F0C987;
+    background: linear-gradient(135deg, #F0C987 0%, #D4A73B 100%);
+    color: #3B153A;
+    font-weight: 700;
     border: none;
-    position: relative;
-    box-shadow:
-        0 4px 0 #9c6e9d,
-        0 8px 15px rgba(97, 41, 95, 0.4);
-    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(230, 184, 77, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.25s ease;
 }
 
 .section-light .cta-form .btn-primary:hover {
-    background: linear-gradient(135deg, #9d469b 0%, #53234c 100%);
+    filter: brightness(1.1);
     transform: translateY(-2px);
-    box-shadow:
-        0 6px 0 #1A0A19,
-        0 12px 20px rgba(59, 21, 58, 0.4);
+    box-shadow: 0 10px 15px -3px rgba(230, 184, 77, 0.4), 0 0 15px rgba(240, 201, 135, 0.5);
 }
 
 .section-light .cta-form .btn-primary:active {
-    transform: translateY(3px);
-    /* Pushes down */
-    box-shadow:
-        0 1px 0 #1A0A19,
-        /* Nearly flat shadow */
-        0 2px 4px rgba(59, 21, 58, 0.2);
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(59, 21, 58, 0.2);
     transition-duration: 0.05s;
 }
 
