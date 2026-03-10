@@ -720,6 +720,7 @@
     background: linear-gradient(135deg, #F0C987 0%, #D4A73B 100%);
     color: #3B153A;
     font-weight: 700;
+    font-size: 15px;
     border: none;
     box-shadow: 0 4px 6px -1px rgba(230, 184, 77, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
     transition: all 0.25s ease;
