@@ -1,22 +1,19 @@
 /**
  * Optimized Nebula Web Cursor Effect for PrimeHR
- * High-performance node-link network with proximity optimization
+ * GPU-accelerated canvas particle system — pauses when idle
  */
 
 class WebNode {
     constructor(x, y, color) {
         this.x = x;
         this.y = y;
-        // Radial burst: particles explode in all directions evenly
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 6 + 2;
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed;
-        this.baseColor = color; // Expecting 'r, g, b' string
+        this.baseColor = color;
         this.life = 1.0;
-        // Slightly slower decay for better visibility
         this.decay = Math.random() * 0.04 + 0.02;
-        // Increased size for clarity
         this.size = Math.random() * 3 + 1.5;
     }
 
@@ -29,7 +26,6 @@ class WebNode {
     }
 
     draw(ctx) {
-        // REMOVED shadowBlur for performance - it's a huge GPU killer
         ctx.fillStyle = `rgba(${this.baseColor}, ${this.life})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -41,53 +37,85 @@ function initNebulaWeb() {
     const canvas = document.getElementById('smokeCanvas');
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    let ctx = null; // Lazy load context
     const hero = document.getElementById('hero');
-    let nodes = [];
-    let mouseX = 0;
-    let mouseY = 0;
-    let isMoving = false;
+    if (!hero) return;
 
-    // Palette: Cyan, Magenta, Blue, White (Strips the rgba formatting for optimization)
+    let nodes = [];
+    let animFrameId = null;
+    let isHeroVisible = false;
+    let isInitialized = false; // Flag to prevent double execution
+
     const colors = [
-        '0, 255, 255',   // Cyan
-        '255, 0, 255',   // Magenta
-        '65, 105, 225',  // Royal Blue
-        '255, 255, 255'  // White
+        '0, 255, 255',
+        '255, 0, 255',
+        '65, 105, 225',
+        '255, 255, 255'
     ];
 
-    function resize() {
+    function setupCanvasMemory() {
+        if (isInitialized) return;
+        isInitialized = true;
+        
+        ctx = canvas.getContext('2d');
         const rect = hero.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
+
+        window.addEventListener('resize', () => {
+            const r = hero.getBoundingClientRect();
+            canvas.width = r.width;
+            canvas.height = r.height;
+        }, { passive: true });
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            isHeroVisible = entries[0].isIntersecting;
+            if (isHeroVisible && nodes.length > 0 && !animFrameId) {
+                animFrameId = requestAnimationFrame(animate);
+            } else if (!isHeroVisible && animFrameId) {
+                cancelAnimationFrame(animFrameId);
+                animFrameId = null;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }, { threshold: 0.1 });
+        heroObserver.observe(hero);
     }
 
-    window.addEventListener('resize', resize);
-    resize();
-
+    let lastMouseMove = 0;
     hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-        isMoving = true;
+        setupCanvasMemory(); // Initializes canvas/context exactly once on first interaction
+        if (!isHeroVisible && isInitialized) isHeroVisible = true; // Force true initially
 
-        // Balanced spawn rate for performance vs density
+        // Throttle high-frequency mousemove to max 30 times a second
+        const now = performance.now();
+        if (now - lastMouseMove < 33) return;
+        lastMouseMove = now;
+
+        const rect = hero.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
         if (nodes.length < 120) {
             for (let i = 0; i < 3; i++) {
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 nodes.push(new WebNode(mouseX, mouseY, color));
             }
         }
-    });
+
+        // Start animation loop if not running
+        if (!animFrameId) {
+            animFrameId = requestAnimationFrame(animate);
+        }
+    }, { passive: true });
 
     hero.addEventListener('mouseleave', () => {
-        isMoving = false;
+        // Let existing particles fade naturally; loop will stop when nodes is empty
     });
 
     function drawConnections() {
         ctx.save();
         ctx.globalCompositeOperation = 'screen';
-        const maxDistSq = 14400; // 120px squared for better reach
+        const maxDistSq = 14400;
         const maxDist = 120;
 
         for (let i = 0; i < nodes.length; i++) {
@@ -102,7 +130,7 @@ function initNebulaWeb() {
                     const dist = Math.sqrt(distSq);
                     const opacity = (1 - dist / maxDist) * Math.min(nodeA.life, nodeB.life) * 0.6;
                     ctx.strokeStyle = `rgba(${nodeA.baseColor}, ${opacity})`;
-                    ctx.lineWidth = 0.8; // Thicker lines for clarity
+                    ctx.lineWidth = 0.8;
                     ctx.beginPath();
                     ctx.moveTo(nodeA.x, nodeA.y);
                     ctx.lineTo(nodeB.x, nodeB.y);
@@ -113,10 +141,30 @@ function initNebulaWeb() {
         ctx.restore();
     }
 
-    function animate() {
+    let lastDrawTime = 0;
+    function animate(timestamp) {
+        // Stop the loop completely and natively clear exactly when empty
+        if (nodes.length === 0) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            cancelAnimationFrame(animFrameId);
+            animFrameId = null;
+            lastDrawTime = 0;
+            return;
+        }
+
+        // Queue next frame immediately
+        animFrameId = requestAnimationFrame(animate);
+
+        // Limit frame rate to ~30 FPS to reduce CPU/TBT penalties
+        if (!lastDrawTime) lastDrawTime = timestamp;
+        const elapsed = timestamp - lastDrawTime;
+        if (elapsed < 33) return;
+
+        // Adjust for precision
+        lastDrawTime = timestamp - (elapsed % 33);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Update and draw nodes
         for (let i = nodes.length - 1; i >= 0; i--) {
             const node = nodes[i];
             node.update();
@@ -124,15 +172,11 @@ function initNebulaWeb() {
             if (node.life <= 0) nodes.splice(i, 1);
         }
 
-        // Draw connections only if we have nodes to save CPU
         if (nodes.length > 1) {
             drawConnections();
         }
-
-        requestAnimationFrame(animate);
     }
-
-    animate();
 }
 
-document.addEventListener('DOMContentLoaded', initNebulaWeb);
+// Execute immediately (script is already deferred by HTML natively)
+initNebulaWeb();

@@ -1,138 +1,125 @@
 // PrimeHR Payroll - Landing Page JavaScript
+// Optimized: passive listeners, rAF throttle, requestIdleCallback deferral,
+// IntersectionObserver for active links, no dynamic style injection, no layout thrashing
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Navigation Scroll Effect
+(function init() {
+    // ── 1. Navigation Scroll (RAF-throttled, passive) ──
     const navbar = document.getElementById('navbar');
-    let lastScrollY = window.scrollY;
+    let scrollTicking = false;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
-        lastScrollY = window.scrollY;
+    }, { passive: true });
 
-        // Active Link Highlighting
-        const sections = document.querySelectorAll('section');
-        const scrollPosition = window.scrollY + 100;
+    // ── 2. Active Nav Links via IntersectionObserver (zero scroll cost) ──
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
 
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
+    if (sections.length && navLinks.length) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').includes(id));
+                    });
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
+        sections.forEach(section => sectionObserver.observe(section));
+    }
 
-            if (scrollPosition >= top && scrollPosition < top + height) {
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(id)) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    });
-
-    // Mobile Menu Toggle
+    // ── 3. Mobile Menu Toggle ──
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinksEl = document.querySelector('.nav-links');
 
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && navLinksEl) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenuBtn.classList.toggle('active');
-            navLinks.classList.toggle('mobile-open');
+            navLinksEl.classList.toggle('mobile-open');
         });
     }
 
-    // Pricing Toggle
+    // ── 4. Pricing Toggle ──
     const pricingToggle = document.getElementById('pricingToggle');
-    const toggleLabels = document.querySelectorAll('.toggle-label');
-    const priceAmounts = document.querySelectorAll('.plan-price .amount');
 
     if (pricingToggle) {
-        // Animation function for numbers
+        const toggleLabels = document.querySelectorAll('.toggle-label');
+        const priceAmounts = document.querySelectorAll('.plan-price .amount');
+
+        // rAF-based counter animation
         const animateValue = (obj, start, end, duration) => {
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                // Easing function for smoother effect (easeOutQuad)
-                const easeProgress = 1 - (1 - progress) * (1 - progress);
-
-                obj.textContent = Math.floor(easeProgress * (end - start) + start);
-
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    obj.textContent = end;
-                }
+                const eased = 1 - (1 - progress) * (1 - progress);
+                obj.textContent = Math.floor(eased * (end - start) + start);
+                if (progress < 1) requestAnimationFrame(step);
+                else obj.textContent = end;
             };
-            window.requestAnimationFrame(step);
+            requestAnimationFrame(step);
         };
 
         pricingToggle.addEventListener('click', () => {
             pricingToggle.classList.toggle('active');
-
-            toggleLabels.forEach(label => {
-                label.classList.toggle('active');
-            });
-
+            toggleLabels.forEach(label => label.classList.toggle('active'));
             priceAmounts.forEach(amount => {
                 const isAnnual = pricingToggle.classList.contains('active');
                 const targetPrice = parseInt(isAnnual ? amount.dataset.annual : amount.dataset.monthly);
                 const currentPrice = parseInt(amount.textContent);
-
-                // Animate to the new price over 400ms
                 animateValue(amount, currentPrice, targetPrice, 400);
             });
         });
     }
 
-    // Smooth Scroll for Anchor Links
+    // ── 5. Smooth Scroll for Anchor Links ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (target) {
-                const offset = 80;
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                e.preventDefault();
+                // Batch layout read, then write — no thrashing
+                const targetTop = target.getBoundingClientRect().top;
+                const scrollY = window.scrollY;
+                window.scrollTo({ top: targetTop + scrollY - 80, behavior: 'smooth' });
 
-                // Close mobile menu if open
-                if (navLinks.classList.contains('mobile-open')) {
-                    mobileMenuBtn.classList.remove('active');
-                    navLinks.classList.remove('mobile-open');
+                if (navLinksEl && navLinksEl.classList.contains('mobile-open')) {
+                    mobileMenuBtn && mobileMenuBtn.classList.remove('active');
+                    navLinksEl.classList.remove('mobile-open');
                 }
             }
         });
     });
 
-    // Demo Form Submission
+    // ── 6. Demo Form Submission ──
     const demoForm = document.getElementById('demoForm');
     const emailInput = document.getElementById('emailInput');
 
-    if (demoForm) {
+    if (demoForm && emailInput) {
         demoForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = emailInput.value.trim();
-
             if (email) {
-                // Show success message (in production, this would be an API call)
                 showNotification('🎉 Thanks! We\'ll be in touch shortly.', 'success');
                 emailInput.value = '';
             }
         });
     }
 
-    // Notification Function
+    // ── 7. Notification Toast ──
     function showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
-        notification.innerHTML = message;
-
+        notification.textContent = message;
         Object.assign(notification.style, {
             position: 'fixed',
             bottom: '24px',
@@ -143,154 +130,116 @@ document.addEventListener('DOMContentLoaded', () => {
             borderRadius: '10px',
             boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
             zIndex: '10000',
-            animation: 'slideIn 0.3s ease',
+            transform: 'translateX(0)',
+            opacity: '1',
+            transition: 'transform 0.3s ease, opacity 0.3s ease',
             fontWeight: '500',
             fontSize: '15px'
         });
-
         document.body.appendChild(notification);
-
         setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease forwards';
+            notification.style.transform = 'translateX(110%)';
+            notification.style.opacity = '0';
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 
-    // Add notification animations
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        .nav-links.mobile-open {
-            display: flex !important;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            right: 0;
-            flex-direction: column;
-            background: white;
-            padding: 24px;
-            gap: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-    `;
-    document.head.appendChild(style);
+    // ── 8. Scroll-Triggered Card Animations ──
+    const animatedEls = document.querySelectorAll(
+        '.feature-card, .step, .pricing-card, .testimonial-card, .integration-card, .upcoming-card'
+    );
 
-    // Intersection Observer for Animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    if (animatedEls.length) {
+        // Batch DOM reads FIRST, then writes — avoid layout thrashing
+        const items = Array.from(animatedEls);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
+        // Write phase: set initial state
+        requestAnimationFrame(() => {
+            items.forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(24px)';
+                el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            });
+
+            // Apply stagger delays AFTER initial state is set
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.features-grid .feature-card').forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.07}s`;
+                });
+                document.querySelectorAll('.pricing-grid .pricing-card').forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.07}s`;
+                });
+                document.querySelectorAll('.testimonials-grid .testimonial-card').forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.07}s`;
+                });
+                document.querySelectorAll('.integrations-grid .integration-card').forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.05}s`;
+                });
+
+                // Start observing
+                const animObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                            animObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+                items.forEach(el => animObserver.observe(el));
+            });
         });
-    }, observerOptions);
-
-    // Observe elements for scroll animations
-    document.querySelectorAll('.feature-card, .mini-feature, .step, .pricing-card, .testimonial-card, .integration-card, .feature-section').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.09s ease, transform 0.09s ease';
-        observer.observe(el);
-    });
-
-    // Add animate-in class styles
-    const animateStyle = document.createElement('style');
-    animateStyle.textContent = `
-        .animate-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(animateStyle);
-
-    // Add stagger delay for grid items
-    document.querySelectorAll('.features-grid .feature-card').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 0.1}s`;
-    });
-
-    document.querySelectorAll('.mini-features-grid .mini-feature').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 0.05}s`;
-    });
-
-    document.querySelectorAll('.pricing-grid .pricing-card').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 0.1}s`;
-    });
-
-    document.querySelectorAll('.testimonials-grid .testimonial-card').forEach((el, i) => {
-        el.style.transitionDelay = `${i * 0.1}s`;
-    });
-
-    // Counter Animation for Stats
-    function animateCounter(element, target, duration = 2000) {
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                // Formatting: 1K+, 0 (no plus), others+
-                if (target === 0) {
-                    element.textContent = '0';
-                } else if (target >= 1000) {
-                    element.textContent = (target / 1000).toFixed(target % 1000 === 0 ? 0 : 1) + 'K+';
-                } else {
-                    element.textContent = target + '+';
-                }
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current) + '+';
-            }
-        }, 16);
     }
 
-    // Animate stats when hero is visible
-    const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statNumbers = entry.target.querySelectorAll('.stat-number');
-                statNumbers.forEach(stat => {
-                    const value = stat.textContent;
-                    if (value.includes('K')) {
-                        const num = parseFloat(value) * 1000;
-                        animateCounter(stat, num);
-                    } else if (value.includes('%')) {
-                        // Keep as is for percentage
-                    } else {
-                        const num = parseInt(value);
-                        if (!isNaN(num)) {
-                            animateCounter(stat, num);
-                        }
-                    }
-                });
-                heroObserver.unobserve(entry.target);
+    // ── 9. Hero Stats Counter (rAF-based) ──
+    function animateCounter(element, target, duration = 1500) {
+        // Read the current display value before animating
+        let startTime = null;
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+
+            // Write
+            if (progress < 1) {
+                element.textContent = current + '+';
+                requestAnimationFrame(step);
+            } else {
+                element.textContent = target === 0 ? '0'
+                    : target >= 1000 ? (target / 1000).toFixed(0) + 'K+'
+                    : target + '+';
             }
-        });
-    }, { threshold: 0.5 });
+        };
+        requestAnimationFrame(step);
+    }
 
     const heroStats = document.querySelector('.hero-stats');
     if (heroStats) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Batch reads, then writes
+                    const stats = Array.from(entry.target.querySelectorAll('.stat-number'));
+                    const statData = stats.map(stat => ({
+                        el: stat,
+                        value: stat.textContent,
+                        num: parseInt(stat.textContent)
+                    }));
+
+                    requestAnimationFrame(() => {
+                        statData.forEach(({ el, value, num }) => {
+                            if (!value.includes('%') && !value.includes('x') && !isNaN(num)) {
+                                animateCounter(el, num);
+                            }
+                        });
+                    });
+
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
         heroObserver.observe(heroStats);
     }
-});
+})();

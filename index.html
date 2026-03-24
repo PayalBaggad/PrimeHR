@@ -8,13 +8,26 @@
         content="PrimeHR - The all-in-one payroll and HRMS solution for SMBs and startups. Streamline attendance, leaves, compliance, and payroll processing.">
     <meta name="keywords"
         content="payroll software, HRMS, attendance management, leave management, SMB payroll, startup payroll, tally integration">
-    <title>PrimeHR | Modern Payroll & HRMS for Growing Businesses</title>
+    <title>PrimeHR | Modern Payroll &amp; HRMS for Growing Businesses</title>
+
+    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="theme-xanthous-plum.css">
+
+    <!-- Preload LCP hero image (Mobile Optimized) -->
+    <link rel="preload" as="image" href="images/hero-dashboard-400w.webp" type="image/webp" media="(max-width: 600px)">
+    <link rel="preload" as="image" href="images/hero-dashboard.webp" type="image/webp" media="(min-width: 601px)">
+
+    <!-- Preload logo (above the fold) -->
+    <link rel="preload" as="image" href="images/logo.webp" type="image/webp">
+
+    <!-- Standard Minified CSS -->
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="theme-xanthous-plum.min.css">
+
+    <!-- Fonts - Optional display prevents layout shifting (CLS) while downloading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional">
+
     <link rel="icon" type="image/png" href="images/PrimeHR_logo.png?v=4">
     <link rel="shortcut icon" type="image/png" href="images/PrimeHR_logo.png?v=4">
 </head>
@@ -24,7 +37,10 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo" width="180" height="50" fetchpriority="high">
+                </picture>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Features</a></li>
@@ -46,12 +62,8 @@
 
     <!-- Hero Section (Dark) -->
     <section class="hero section-dark" id="hero">
-        <canvas id="smokeCanvas"></canvas>
-        <div class="hero-bg">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
+        <canvas id="smokeCanvas" class="smoke-effect"></canvas>
+        <!-- hero-bg orbs removed: not visible under plum theme, but caused GPU paint -->
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="hero-badge">
@@ -102,7 +114,15 @@
             </div>
 
             <div class="hero-image">
-                <img src="images/hero-dashboard.png" alt="PrimeHR Dashboard" />
+                <!-- LCP image: NOT lazy loaded, high fetch priority -->
+                <picture>
+                    <source 
+                        srcset="images/hero-dashboard-400w.webp 400w, images/hero-dashboard-800w.webp 800w, images/hero-dashboard.webp 1536w" 
+                        sizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, 1536px" 
+                        type="image/webp">
+                    <img src="images/hero-dashboard.png" alt="PrimeHR Dashboard" width="600" height="400"
+                         style="aspect-ratio: 600/400;" fetchpriority="high">
+                </picture>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -123,8 +143,7 @@
                 <span class="section-badge">Features</span>
                 <h2 class="section-title">Everything You Need to <span class="gradient-text2">Run Payroll</span></h2>
                 <p class="section-description">
-                    From attendance tracking to compliance automation, PrimeHR handles it all.
-                    Explore our comprehensive suite of features designed for modern businesses.
+                    From attendance tracking to compliance automation, PrimeHR handles it all. Explore our comprehensive suite of features designed for modern businesses.
                 </p>
             </div>
 
@@ -143,9 +162,9 @@
                     <ul class="feature-list">
                         <li>Flexible salary structure configuration</li>
                         <li>Multiple payroll runs in the same month</li>
-                        <li>Automated payslip generation & distribution</li>
-                        <li>LOP adjustments & manual overrides</li>
-                        <li>Salary arrears & custom deductions</li>
+                        <li>Automated payslip generation &amp; distribution</li>
+                        <li>LOP adjustments &amp; manual overrides</li>
+                        <li>Salary arrears &amp; custom deductions</li>
                         <li>Bank transfer statements</li>
                     </ul>
                 </div>
@@ -163,11 +182,11 @@
                     <p>Track employee attendance effortlessly with multiple methods including biometric, mobile, and web
                         check-ins.</p>
                     <ul class="feature-list">
-                        <li>Biometric, mobile & web attendance</li>
-                        <li>Configurable working hours & days</li>
+                        <li>Biometric, mobile &amp; web attendance</li>
+                        <li>Configurable working hours &amp; days</li>
                         <li>Attendance regularization with approval</li>
                         <li>Visual attendance calendar</li>
-                        <li>Monthly attendance matrix & summary</li>
+                        <li>Monthly attendance matrix &amp; summary</li>
                     </ul>
                 </div>
 
@@ -186,7 +205,7 @@
                         <li>Configurable carry-forward rules</li>
                         <li>Sandwich leave policy support</li>
                         <li>Multi-level approval workflows</li>
-                        <li>Email notifications & balance tracking</li>
+                        <li>Email notifications &amp; balance tracking</li>
                     </ul>
                 </div>
 
@@ -203,8 +222,8 @@
                         both old and new tax regimes.</p>
                     <ul class="feature-list">
                         <li>Auto Professional Tax by state</li>
-                        <li>PF & ESI contribution calculations</li>
-                        <li>TDS auto-calculation (Old & New regime)</li>
+                        <li>PF &amp; ESI contribution calculations</li>
+                        <li>TDS auto-calculation (Old &amp; New regime)</li>
                         <li>Gratuity eligibility tracking</li>
                         <li>Auto-apply statutory deductions</li>
                     </ul>
@@ -219,14 +238,14 @@
                             <path d="M20 21c0-4.418-3.582-8-8-8s-8 3.582-8 8" />
                         </svg>
                     </div>
-                    <h3>HR & Employee Management</h3>
+                    <h3>HR &amp; Employee Management</h3>
                     <p>Centralized employee directory with complete lifecycle management from onboarding to exit.</p>
                     <ul class="feature-list">
                         <li>Bulk employee invitations (Excel upload)</li>
-                        <li>Salary structure & revision management</li>
-                        <li>Tax declarations & bank details</li>
+                        <li>Salary structure &amp; revision management</li>
+                        <li>Tax declarations &amp; bank details</li>
                         <li>Exit process initiation</li>
-                        <li>HR & Salary registers</li>
+                        <li>HR &amp; Salary registers</li>
                     </ul>
                 </div>
 
@@ -368,9 +387,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/tally.png" alt="Tally" class="integration-img-logo icon-lg">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/tally.webp" type="image/webp">
+                                    <img src="images/tally.png" alt="Tally" class="integration-img-logo icon-lg"
+                                         width="64" height="64" style="aspect-ratio: 64/64;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Tally</span>
                         </div>
                         <div class="card-back">
@@ -384,9 +407,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/excel.png" alt="Excel" class="integration-img-logo">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/excel.webp" type="image/webp">
+                                    <img src="images/excel.png" alt="Excel" class="integration-img-logo"
+                                         width="48" height="48" style="aspect-ratio: 48/48;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Excel Import</span>
                         </div>
                         <div class="card-back">
@@ -399,9 +426,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/bank transactions.png" alt="Bank" class="integration-img-logo icon-lg">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/bank transactions.webp" type="image/webp">
+                                    <img src="images/bank transactions.png" alt="Bank" class="integration-img-logo icon-lg"
+                                         width="64" height="64" style="aspect-ratio: 64/64;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Bank Transfer Ready</span>
                         </div>
                         <div class="card-back">
@@ -414,9 +445,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/email.png" alt="Email" class="integration-img-logo">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/email.webp" type="image/webp">
+                                    <img src="images/email.png" alt="Email" class="integration-img-logo"
+                                         width="48" height="48" style="aspect-ratio: 48/48;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Email Alerts</span>
                         </div>
                         <div class="card-back">
@@ -429,9 +464,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/fingerprint.png" alt="Biometric" class="integration-img-logo">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/fingerprint.webp" type="image/webp">
+                                    <img src="images/fingerprint.png" alt="Biometric" class="integration-img-logo"
+                                         width="48" height="48" style="aspect-ratio: 48/48;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Biometric</span>
                         </div>
                         <div class="card-back">
@@ -444,9 +483,13 @@
                 <div class="integration-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="integration-logo">
-                                <img src="images/smartphone.png" alt="Mobile App" class="integration-img-logo icon-lg">
-                            </div>
+                             <div class="integration-logo">
+                                <picture>
+                                    <source srcset="images/smartphone.webp" type="image/webp">
+                                    <img src="images/smartphone.png" alt="Mobile App" class="integration-img-logo icon-lg"
+                                         width="64" height="64" style="aspect-ratio: 64/64;" loading="lazy">
+                                </picture>
+                             </div>
                             <span>Mobile App</span>
                         </div>
                         <div class="card-back">
@@ -473,10 +516,10 @@
                 <span class="toggle-label active" data-period="monthly">Monthly</span>
                 <button class="toggle-switch" id="pricingToggle" aria-label="Toggle pricing period">
                     <span class="toggle-slider">
-                        <span class="emoji emoji-monthly"><img src="images/emoji-star-eyes.png" alt="Monthly"
-                                class="toggle-emoji-img"></span>
-                        <span class="emoji emoji-annual"><img src="images/emoji-money-face.png" alt="Annual"
-                                class="toggle-emoji-img"></span>
+                        <span class="emoji emoji-monthly"><picture><source srcset="images/emoji-star-eyes.webp" type="image/webp"><img src="images/emoji-star-eyes.png" alt="Monthly"
+                                class="toggle-emoji-img" width="36" height="36" style="aspect-ratio: 36/36;" loading="lazy"></picture></span>
+                        <span class="emoji emoji-annual"><picture><source srcset="images/emoji-money-face.webp" type="image/webp"><img src="images/emoji-money-face.png" alt="Annual"
+                                class="toggle-emoji-img" width="36" height="36" style="aspect-ratio: 36/36;" loading="lazy"></picture></span>
                     </span>
                 </button>
                 <span class="toggle-label" data-period="annual">Annual <span class="save-badge">Save 20%</span></span>
@@ -558,7 +601,6 @@
 
     <!-- Testimonials (Dark) - Blob LEFT -->
     <section class="testimonials section-dark" id="testimonials">
-        <!--<div class="bg-blob blob-2" style="left: 50px; top: 600%; transform: rotate(45deg);"></div>-->
         <div class="bg-blob blob-3" style="top: 40%; left: 50px; opacity: 0.5; transform: rotate(45deg)"></div>
         <div class="geo-accent" style="bottom: 10%; right: 5%;"></div>
         <div class="container">
@@ -641,7 +683,10 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo">
+                        <picture>
+                            <source srcset="images/logo.webp" type="image/webp">
+                            <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo" width="180" height="50" loading="lazy">
+                        </picture>
                     </a>
                     <p>The modern payroll and HRMS platform for growing businesses.</p>
                     <div class="social-links">
@@ -703,9 +748,9 @@
         </div>
     </footer>
 
-    <script src="smoke.js"></script>
-    <script src="particles.js"></script>
-    <script src="script.js"></script>
+    <!-- Native defer is the most optimal algorithm for loading JS without blocking FCP and without artificially extending TTI like a manual timeout would -->
+    <script src="smoke.min.js" defer></script>
+    <script src="script.min.js" defer></script>
 </body>
 
 </html>

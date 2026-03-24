@@ -11,10 +11,12 @@
     <title>All Features | PrimeHR Payroll</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="theme-xanthous-plum.css">
+    <!-- Standard Minified CSS -->
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="theme-xanthous-plum.min.css">
+
+    <!-- Fonts - Optional display prevents layout shifting (CLS) while downloading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional">
     <link rel="icon" type="image/png" href="images/PrimeHR_logo.png?v=4">
     <link rel="shortcut icon" type="image/png" href="images/PrimeHR_logo.png?v=4">
 </head>
@@ -24,7 +26,10 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo">
+                <picture>
+                    <source srcset="images/logo.webp" type="image/webp">
+                    <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo" width="180" height="50" fetchpriority="high">
+                </picture>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#features">Features</a></li>
@@ -425,9 +430,8 @@
                 <p>Made with ❤️ in India</p>
             </div>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <!-- Native defer is the most optimal algorithm for loading JS without blocking FCP and without artificially extending TTI -->
+    <script src="script.min.js" defer></script>
 </body>
 
 </html>
