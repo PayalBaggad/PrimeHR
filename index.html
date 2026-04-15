@@ -14,22 +14,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Preload LCP hero image (Mobile Optimized) -->
-    <link rel="preload" as="image" href="images/hero-dashboard-400w.webp" type="image/webp" media="(max-width: 600px)">
-    <link rel="preload" as="image" href="images/hero-dashboard.webp" type="image/webp" media="(min-width: 601px)">
 
     <!-- Preload logo (above the fold) -->
-    <link rel="preload" as="image" href="images/logo.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/Group 11.png" type="image/png">
 
     <!-- Standard Minified CSS -->
     <link rel="stylesheet" href="styles.min.css">
-    <link rel="stylesheet" href="theme-xanthous-plum.min.css">
+    <!-- theme-xanthous-plum commented out — replaced by theme-noir-rose -->
+    <!-- <link rel="stylesheet" href="theme-xanthous-plum.min.css"> -->
+    <link rel="stylesheet" href="theme-noir-rose.css">
 
     <!-- Fonts - Optional display prevents layout shifting (CLS) while downloading -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional">
 
-    <link rel="icon" type="image/png" href="images/favicons/favicon.png?v=10">
-    <link rel="shortcut icon" type="image/png" href="images/favicons/favicon.png?v=10">
+    <link rel="icon" type="image/png" href="images/image 19.png?v=12">
+    <link rel="shortcut icon" type="image/png" href="images/image 19.png?v=12">
 </head>
 
 <body>
@@ -37,10 +36,7 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <picture>
-                    <source srcset="images/logo.webp" type="image/webp">
-                    <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo" width="180" height="50" fetchpriority="high">
-                </picture>
+                <img src="images/Group 11.png" alt="PrimeHR Logo" class="brand-logo" fetchpriority="high">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Features</a></li>
@@ -114,16 +110,15 @@
             </div>
 
             <div class="hero-image">
-                <!-- LCP image: NOT lazy loaded, high fetch priority -->
-                <picture>
-                    <source 
-                        srcset="images/hero-dashboard-400w.webp 400w, images/hero-dashboard-800w.webp 800w, images/hero-dashboard.webp 1536w" 
-                        sizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, 1536px" 
-                        type="image/webp">
-                    <img src="images/hero-dashboard.png" alt="PrimeHR Dashboard" width="600" height="400"
-                         style="aspect-ratio: 600/400;" fetchpriority="high">
-                </picture>
+                <div class="video-placeholder" style="aspect-ratio: 16/9; background: rgba(0,0,0,0.6); border: 2px dashed rgba(255,255,255,0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #BF6F6D; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px; opacity: 0.9;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+                    </svg>
+                    <span style="font-weight: 600; font-size: 18px; color: #fff; opacity: 0.9;">Video Placeholder</span>
+                </div>
             </div>
+
         </div>
         <div class="scroll-indicator">
             <span>Scroll to explore</span>
@@ -295,7 +290,7 @@
             </div>
             <div class="upcoming-grid">
                 <div class="upcoming-card">
-                    <div class="upcoming-icon">📍</div>
+                    <div class="upcoming-icon"><img src="images/placeholder.png" alt="Location" width="48" height="48" loading="lazy"></div>
                     <div class="upcoming-content">
                         <h3>Employee Location Tracking</h3>
                         <p>Track field employee locations in real-time. Perfect for remote teams and on-site workforce
@@ -304,7 +299,7 @@
                     </div>
                 </div>
                 <div class="upcoming-card">
-                    <div class="upcoming-icon">🤖</div>
+                    <div class="upcoming-icon"><img src="images/robot-assistant.png" alt="Robot" width="48" height="48" loading="lazy"></div>
                     <div class="upcoming-content">
                         <h3>AI Generated Content Writing</h3>
                         <p>Auto-generate HR letters, policy documents, and employee communications with AI assistance.
@@ -313,7 +308,7 @@
                     </div>
                 </div>
                 <div class="upcoming-card">
-                    <div class="upcoming-icon">🔍</div>
+                    <div class="upcoming-icon"><img src="images/seo.png" alt="Search" width="48" height="48" loading="lazy"></div>
                     <div class="upcoming-content">
                         <h3>Simplified Natural Language Filter</h3>
                         <p>Search and filter data using plain English. Just type what you're looking for naturally.</p>
@@ -683,10 +678,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <picture>
-                            <source srcset="images/logo.webp" type="image/webp">
-                            <img src="images/logo.png" alt="PrimeHR Logo" class="brand-logo" width="180" height="50" loading="lazy">
-                        </picture>
+                        <img src="images/Group 11.png" alt="PrimeHR Logo" class="brand-logo" loading="lazy">
                     </a>
                     <p>The modern payroll and HRMS platform for growing businesses.</p>
                     <div class="social-links">

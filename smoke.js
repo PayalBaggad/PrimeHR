@@ -47,10 +47,10 @@ function initNebulaWeb() {
     let isInitialized = false; // Flag to prevent double execution
 
     const colors = [
-        '0, 255, 255',
-        '255, 0, 255',
-        '65, 105, 225',
-        '255, 255, 255'
+        '191, 111, 109', // #BF6F6D Primary Rose
+        '141, 74, 72',   // #8D4A48 Dark Rose
+        '212, 133, 132', // #D48584 Light Rose
+        '255, 255, 255'  // #FFFFFF White
     ];
 
     function setupCanvasMemory() {

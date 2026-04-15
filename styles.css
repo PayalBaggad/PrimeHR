@@ -17,7 +17,7 @@
     --primary-900: #1e3a8a;
 
     /* ACCENT */
-    --accent-400: #22d3ee;
+    --accent-400: #f87a77;
     --accent-500: #06b6d4;
     --accent-600: #0891b2;
 
@@ -43,10 +43,10 @@
     --gray-950: #030712;
 
     /* UI ELEMENT COLORS */
-    --orb-primary-start: rgba(99, 102, 241, 0.4);
+    --orb-primary-start: rgba(248, 122, 119, 0.4);
     --orb-primary-end: rgba(139, 92, 246, 0.3);
-    --orb-accent-start: rgba(6, 182, 212, 0.3);
-    --orb-accent-end: rgba(99, 102, 241, 0.2);
+    --orb-accent-start: rgba(248, 122, 119, 0.3);
+    --orb-accent-end: rgba(248, 122, 119, 0.2);
     --orb-pink-start: rgba(236, 72, 153, 0.2);
     --orb-pink-end: rgba(139, 92, 246, 0.2);
 
@@ -63,10 +63,10 @@
     --gradient-text: linear-gradient(135deg, var(--primary-400) 0%, var(--accent-400) 100%);
     --gradient-section: linear-gradient(180deg, var(--gray-50) 0%, white 100%);
 
-    --glow-primary: rgba(99, 102, 241, 0.4);
-    --glow-primary-light: rgba(99, 102, 241, 0.3);
-    --glow-primary-subtle: rgba(99, 102, 241, 0.2);
-    --glow-primary-faint: rgba(99, 102, 241, 0.05);
+    --glow-primary: rgba(248, 122, 119, 0.4);
+    --glow-primary-light: rgba(248, 122, 119, 0.3);
+    --glow-primary-subtle: rgba(248, 122, 119, 0.2);
+    --glow-primary-faint: rgba(248, 122, 119, 0.05);
 
     /* SHADOWS */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -419,7 +419,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-dark .gradient-text {
-    background: linear-gradient(135deg, #22d3ee 0%, #67e8f9 100%) !important;
+    background: linear-gradient(135deg, #f87a77 0%, #f87a77 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -1209,7 +1209,7 @@ h1, h2, h3, h4, h5, h6 {
 .toggle-label.active {
     color: #fd9002;
     font-weight: 700;
-    background: #fffbd8;
+    background: #F2D4D3; /* lighter version of #BF6F6D */
 }
 
 .toggle-switch {
@@ -1304,13 +1304,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .pricing-card:hover {
     transform: scale(1.03) translateY(-6px);
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 20px 40px rgba(248, 122, 119, 0.2);
     z-index: 10;
 }
 
 .pricing-card.featured {
     border: 2px solid var(--primary-500);
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 4px 20px rgba(248, 122, 119, 0.15);
 }
 
 .popular-badge {
