@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact PrimeHR — Get in touch with our team for support, sales, or any questions about our HRMS platform.">
+    <title>Contact Us | PrimeHR</title>
+    <link rel="canonical" href="https://primehr.in/contact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="theme-noir-rose.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/prime.png?v=13">
+    <link rel="shortcut icon" href="images/prime.png?v=13">
+    <link rel="apple-touch-icon" href="images/prime.png?v=13">
+
+    <style>
+        /* ══════════════════════════════════════
+           CONTACT PAGE
+        ══════════════════════════════════════ */
+
+        body {
+            background-color: #050505;
+            min-height: 100vh;
+        }
+
+        /* ── Hero Banner ── */
+        .ct-hero {
+            background-color: #050505;
+            background-image:
+                radial-gradient(at 10% 0%, rgba(191,111,109,0.12) 0px, transparent 55%),
+                radial-gradient(at 90% 100%, rgba(141,74,72,0.07) 0px, transparent 55%);
+            padding: 120px 0 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ct-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(191,111,109,0.10) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .ct-hero .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #BF6F6D !important;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .ct-hero .back-link:hover {
+            color: #EDA6A5 !important;
+            transform: translateX(-4px);
+        }
+
+        .ct-hero h1 {
+            font-size: clamp(34px, 6vw, 54px);
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+
+
+        .ct-hero h1 span {
+            color: #f87a77;
+        }
+
+        .ct-hero p {
+            font-size: 17px;
+            color: rgba(200,200,200,0.85);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ── Main Split Layout ── */
+        .ct-body {
+            background-color: #0A0A0A;
+            padding: 72px 0 100px;
+        }
+
+        .ct-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        /* ── LEFT: Illustration + Info ── */
+        .ct-left {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .ct-illustration {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(191,111,109,0.18);
+            box-shadow:
+                0 0 0 1px rgba(191,111,109,0.08),
+                0 24px 60px rgba(0,0,0,0.55),
+                0 0 40px rgba(191,111,109,0.08);
+            background: rgba(15,15,15,0.6);
+        }
+
+        .ct-illustration img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        .ct-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ct-info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 24px;
+            background: rgba(15,15,15,0.85);
+            border: 1px solid rgba(191,111,109,0.15);
+            border-top: 1px solid rgba(191,111,109,0.35);
+            border-radius: 14px;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ct-info-card:hover {
+            border-color: rgba(191,111,109,0.45);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 16px rgba(191,111,109,0.1);
+        }
+
+        .ct-info-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 10px;
+            background: rgba(191,111,109,0.12);
+            border: 1px solid rgba(191,111,109,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #BF6F6D;
+        }
+
+        .ct-info-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #BF6F6D;
+        }
+
+        .ct-info-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF !important;
+            margin: 0 0 3px;
+        }
+
+        .ct-info-text p,
+        .ct-info-text a {
+            font-size: 14px;
+            color: rgba(200,200,200,0.75) !important;
+            margin: 0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .ct-info-text a:hover {
+            color: #EDA6A5 !important;
+        }
+
+        /* ── RIGHT: Form ── */
+        .ct-form-wrap {
+            background: rgba(12,12,12,0.9);
+            border: 1px solid rgba(191,111,109,0.18);
+            border-radius: 20px;
+            padding: 44px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .ct-form-wrap h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #FFFFFF !important;
+            margin: 0 0 6px;
+        }
+
+        .ct-form-wrap > p {
+            font-size: 14px;
+            color: rgba(200,200,200,0.65);
+            margin: 0 0 32px;
+        }
+
+        .ct-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ct-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .ct-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .ct-field label {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(237,166,165,0.85);
+            letter-spacing: 0.02em;
+        }
+
+        .ct-field input,
+        .ct-field select,
+        .ct-field textarea {
+            background: rgba(255,255,255,0.04);
+            border: 1.5px solid rgba(191,111,109,0.22);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #FFFFFF;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .ct-field input::placeholder,
+        .ct-field textarea::placeholder {
+            color: rgba(200,200,200,0.3);
+        }
+
+        .ct-field select option {
+            background: #1a1a1a;
+            color: #FFFFFF;
+        }
+
+        .ct-field input:focus,
+        .ct-field select:focus,
+        .ct-field textarea:focus {
+            border-color: #BF6F6D;
+            background: rgba(191,111,109,0.06);
+            box-shadow: 0 0 0 3px rgba(191,111,109,0.12);
+        }
+
+        .ct-field textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Invalid field state */
+        .ct-field input.ct-invalid,
+        .ct-field select.ct-invalid,
+        .ct-field textarea.ct-invalid {
+            border-color: #f87a77 !important;
+            background: rgba(248, 122, 119, 0.06) !important;
+            box-shadow: 0 0 0 3px rgba(248, 122, 119, 0.15) !important;
+        }
+
+        .ct-field-error {
+            font-size: 12px;
+            color: #f87a77;
+            margin-top: 2px;
+            display: none;
+        }
+
+        .ct-field-error.visible {
+            display: block;
+        }
+
+        /* Submit Button */
+        .ct-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 28px;
+            background: #BF6F6D;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(191,111,109,0.35);
+            margin-top: 4px;
+        }
+
+        .ct-submit:hover {
+            background: #A85A58;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(191,111,109,0.45), 0 0 20px rgba(191,111,109,0.25);
+        }
+
+        .ct-submit:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .ct-submit svg {
+            width: 18px;
+            height: 18px;
+            stroke: #FFFFFF;
+            transition: transform 0.25s ease;
+        }
+
+        .ct-submit:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Success State */
+        .ct-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 40px 20px;
+        }
+
+        .ct-success-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(191,111,109,0.15);
+            border: 2px solid #BF6F6D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ct-success-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #BF6F6D;
+        }
+
+        .ct-success h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFFFFF !important;
+            margin: 0;
+        }
+
+        .ct-success p {
+            font-size: 14px;
+            color: rgba(200,200,200,0.7);
+            margin: 0;
+            max-width: 320px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .ct-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .ct-illustration {
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            .ct-form-wrap {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ct-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .ct-hero {
+                padding: 100px 0 44px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/PrimeHR-text.png" alt="PrimeHR Logo" class="brand-logo" fetchpriority="high">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#integrations">Integrations</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="contact.html" class="nav-active">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-ghost">Login</a>
+                <a href="index.html#demo" class="btn btn-primary">Get Started Free</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="ct-hero">
+        <div class="container" style="position:relative;z-index:2;">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 5l-7 7 7 7"/>
+                </svg>
+                Back to Home
+            </a>
+            <h1>Get in <span>Touch</span></h1>
+            <p>Have a question, need a demo, or want to explore what PrimeHR can do for your team? We'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- Body -->
+    <div class="ct-body">
+        <div class="ct-layout">
+
+            <!-- LEFT: Illustration + Contact Info -->
+            <div class="ct-left">
+                <div class="ct-illustration">
+                    <img src="images/contact-illustration.png" alt="Contact PrimeHR" loading="lazy">
+                </div>
+
+                <div class="ct-info">
+                    <div class="ct-info-card">
+                        <div class="ct-info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Email Us</h4>
+                            <a href="mailto:support@techstuff.cloud">support@techstuff.cloud</a>
+                        </div>
+                    </div>
+
+                    <div class="ct-info-card">
+                        <div class="ct-info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Support Portal</h4>
+                            <a href="https://primehr.in/support" target="_blank" rel="noopener">primehr.in/support</a>
+                        </div>
+                    </div>
+
+                    <div class="ct-info-card">
+                        <div class="ct-info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="ct-info-text">
+                            <h4>Response Time</h4>
+                            <p>We typically respond within 4 hours on business days.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Form -->
+            <div class="ct-form-wrap">
+                <h2>Send Us a Message</h2>
+                <p>Fill out the form below and our team will get back to you shortly.</p>
+
+                <form class="ct-form" id="contactForm">
+                    <div class="ct-form-row">
+                        <div class="ct-field">
+                            <label for="ct-firstname">First Name <span style="color:#BF6F6D;">*</span></label>
+                            <input type="text" id="ct-firstname" name="firstname" placeholder="Raj" required>
+                            <span class="ct-field-error" id="err-firstname">First name is required.</span>
+                        </div>
+                        <div class="ct-field">
+                            <label for="ct-lastname">Last Name</label>
+                            <input type="text" id="ct-lastname" name="lastname" placeholder="Kumar">
+                        </div>
+                    </div>
+
+                    <div class="ct-field">
+                        <label for="ct-email">Work Email <span style="color:#BF6F6D;">*</span></label>
+                        <input type="email" id="ct-email" name="email" placeholder="raj@company.com" required>
+                        <span class="ct-field-error" id="err-email">A valid work email is required.</span>
+                    </div>
+
+                    <div class="ct-form-row">
+                        <div class="ct-field">
+                            <label for="ct-company">Company Name</label>
+                            <input type="text" id="ct-company" name="company" placeholder="Acme Pvt. Ltd.">
+                        </div>
+                        <div class="ct-field">
+                            <label for="ct-employees">Team Size</label>
+                            <select id="ct-employees" name="employees">
+                                <option value="" disabled selected>Select range</option>
+                                <option value="1-10">1–10 employees</option>
+                                <option value="11-50">11–50 employees</option>
+                                <option value="51-200">51–200 employees</option>
+                                <option value="201-500">201–500 employees</option>
+                                <option value="500+">500+ employees</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ct-field">
+                        <label for="ct-subject">Subject <span style="color:#BF6F6D;">*</span></label>
+                        <select id="ct-subject" name="subject" required>
+                            <option value="" disabled selected>What can we help you with?</option>
+                            <option value="demo">Request a Demo</option>
+                            <option value="pricing">Pricing Enquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="integration">Integration Help</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="ct-field-error" id="err-subject">Please select a subject.</span>
+                    </div>
+
+                    <div class="ct-field">
+                        <label for="ct-message">Message <span style="color:#BF6F6D;">*</span></label>
+                        <textarea id="ct-message" name="message" placeholder="Tell us how we can help..." required></textarea>
+                        <span class="ct-field-error" id="err-message">Please enter your message.</span>
+                    </div>
+
+                    <button type="submit" class="ct-submit" id="ct-submit-btn">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div class="ct-success" id="ct-success">
+                    <div class="ct-success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. Our team will get back to you within 4 hours.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="images/PrimeHR-text.png" alt="PrimeHR Logo" class="brand-logo" loading="lazy">
+                    </a>
+                    <p>The modern payroll and HRMS platform for growing businesses.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.072H5.059z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="index.html#integrations">Integrations</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PrimeHR Payroll. All rights reserved.</p>
+                <p>Made with ❤️ in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.min.js" defer></script>
+    <script>
+        // ── Active nav link style ──
+        (function () {
+            const style = document.createElement('style');
+            style.textContent = '.nav-active { color: #BF6F6D !important; }';
+            document.head.appendChild(style);
+        })();
+
+        // ── Form submit handler with validation ──
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var form = this;
+            var valid = true;
+
+            // Helper: validate a single field
+            function validate(fieldId, errorId) {
+                var field = document.getElementById(fieldId);
+                var error = document.getElementById(errorId);
+                if (!field.value.trim() || (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim()))) {
+                    field.classList.add('ct-invalid');
+                    error.classList.add('visible');
+                    valid = false;
+                } else {
+                    field.classList.remove('ct-invalid');
+                    error.classList.remove('visible');
+                }
+            }
+
+            validate('ct-firstname', 'err-firstname');
+            validate('ct-email',     'err-email');
+            validate('ct-subject',   'err-subject');
+            validate('ct-message',   'err-message');
+
+            if (!valid) return;
+
+            // All good — submit
+            var btn = document.getElementById('ct-submit-btn');
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btn.querySelector('span').textContent = 'Sending…';
+
+            setTimeout(function () {
+                document.getElementById('contactForm').style.display = 'none';
+                var success = document.getElementById('ct-success');
+                success.style.display = 'flex';
+            }, 1200);
+        });
+
+        // Clear invalid state on input
+        ['ct-firstname','ct-email','ct-subject','ct-message'].forEach(function(id) {
+            var el = document.getElementById(id);
+            el.addEventListener('input', function () {
+                el.classList.remove('ct-invalid');
+                var err = document.getElementById('err-' + id.replace('ct-',''));
+                if (err) err.classList.remove('visible');
+            });
+        });
+    </script>
+</body>
+
+</html>

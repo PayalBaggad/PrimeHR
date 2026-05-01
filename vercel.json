@@ -9,4 +9,4 @@
       { "source": "/reset-password", "destination": "https://app.primehr.in/reset-password", "permanent": false },
       { "source": "/reset-password/request", "destination": "https://app.primehr.in/reset-password/request", "permanent": false }
     ]
-  }
+ }
