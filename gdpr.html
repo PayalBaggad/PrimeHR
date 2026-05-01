@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PrimeHR GDPR Compliance — How we handle personal data of EU/EEA residents and your rights under GDPR.">
+    <title>GDPR | PrimeHR</title>
+    <link rel="canonical" href="https://primehr.in/gdpr">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="theme-noir-rose.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=optional">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/prime.png?v=13">
+    <link rel="shortcut icon" href="images/prime.png?v=13">
+    <link rel="apple-touch-icon" href="images/prime.png?v=13">
+    <style>
+        .pp-hero { background-color:#050505; background-image:radial-gradient(at 0% 0%, rgba(191,111,109,0.10) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(141,74,72,0.06) 0px, transparent 50%); padding:120px 0 60px; text-align:center; position:relative; overflow:hidden; }
+        .pp-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, rgba(191,111,109,0.12) 0%, transparent 60%); pointer-events:none; }
+        .pp-hero .back-link { display:inline-flex; align-items:center; gap:8px; color:#BF6F6D !important; font-size:14px; font-weight:500; margin-bottom:28px; text-decoration:none; transition:all 0.3s ease; }
+        .pp-hero .back-link:hover { color:#EDA6A5 !important; transform:translateX(-4px); }
+        .pp-hero h1 { font-size:clamp(36px,6vw,56px); font-weight:800; color:#FFFFFF; margin-bottom:16px; line-height:1.2; }
+        .pp-hero h1 span { color:#f87a77; }
+        .pp-meta { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:20px; }
+        .pp-meta-item { display:flex; align-items:center; gap:8px; background:rgba(191,111,109,0.12); border:1px solid rgba(191,111,109,0.25); border-radius:100px; padding:6px 16px; font-size:13px; color:#EDA6A5; font-weight:500; }
+        .pp-body { background-color:#0A0A0A; padding:60px 0 100px; }
+        .pp-layout { display:grid; grid-template-columns:260px 1fr; gap:48px; max-width:1100px; margin:0 auto; padding:0 24px; align-items:start; }
+        .pp-toc { position:sticky; top:100px; background:rgba(15,15,15,0.9); border:1px solid rgba(191,111,109,0.2); border-radius:16px; padding:24px; }
+        .pp-toc h3 { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#BF6F6D !important; margin-bottom:16px; }
+        .pp-toc ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:4px; }
+        .pp-toc ul li a { font-size:13px; color:rgba(255,255,255,0.65) !important; text-decoration:none; display:block; padding:6px 10px; border-radius:8px; transition:all 0.2s ease; line-height:1.4; }
+        .pp-toc ul li a:hover { background:rgba(191,111,109,0.12); color:#EDA6A5 !important; }
+        .pp-toc ul li a.toc-active { background:rgba(191,111,109,0.18); color:#EDA6A5 !important; border-left:2px solid #BF6F6D; padding-left:8px; font-weight:600; }
+        .pp-article { color:#C8C8C8; font-size:16px; line-height:1.8; }
+        .pp-section { margin-bottom:52px; padding-bottom:52px; border-bottom:1px solid rgba(191,111,109,0.1); }
+        .pp-section:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+        .pp-section h2 { font-size:26px; font-weight:700; color:#FFFFFF !important; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+        .pp-section h2 .section-num { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; min-width:34px; background:rgba(191,111,109,0.15); border:1px solid rgba(191,111,109,0.35); border-radius:8px; font-size:14px; font-weight:700; color:#BF6F6D; }
+        .pp-section h3 { font-size:17px; font-weight:600; color:#EDA6A5 !important; margin:24px 0 10px; }
+        .pp-section p { margin:0 0 14px; color:rgba(200,200,200,0.9); }
+        .pp-section ul { list-style:none; padding:0; margin:10px 0 16px; display:flex; flex-direction:column; gap:8px; }
+        .pp-section ul li { display:flex; align-items:flex-start; gap:10px; color:rgba(200,200,200,0.85); line-height:1.6; }
+        .pp-section ul li::before { content:''; display:block; width:6px; height:6px; min-width:6px; min-height:6px; background:#BF6F6D; border-radius:50%; margin-top:9px; }
+        .pp-section ul li strong { color:#FFFFFF; white-space:nowrap; flex-shrink:0; }
+        .pp-highlight { background:rgba(191,111,109,0.08); border-left:3px solid #BF6F6D; border-radius:0 10px 10px 0; padding:16px 20px; margin:16px 0; color:rgba(237,166,165,0.9); font-size:15px; }
+        .rights-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+        .right-card { background:rgba(15,15,15,0.85); border:1px solid rgba(191,111,109,0.15); border-top:2px solid rgba(191,111,109,0.4); border-radius:12px; padding:18px 20px; }
+        .right-card h4 { font-size:14px; font-weight:600; color:#FFFFFF !important; margin:0 0 6px; }
+        .right-card p { font-size:13px; color:rgba(200,200,200,0.75); margin:0; line-height:1.5; }
+        .pp-contact-card { background:rgba(191,111,109,0.08); border:1px solid rgba(191,111,109,0.25); border-radius:16px; padding:28px; margin-top:16px; }
+        .pp-contact-card p { margin:0 0 8px; }
+        .pp-contact-card a { color:#EDA6A5 !important; text-decoration:none; }
+        .pp-contact-card a:hover { color:#BF6F6D !important; text-decoration:underline; }
+        @media (max-width:900px) { .pp-layout { grid-template-columns:1fr; } .pp-toc { position:static; display:none; } .rights-grid { grid-template-columns:1fr; } }
+        @media (max-width:600px) { .pp-hero { padding:100px 0 48px; } .pp-section h2 { font-size:21px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="images/PrimeHR-text.png" alt="PrimeHR Logo" class="brand-logo" fetchpriority="high"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#integrations">Integrations</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-ghost">Login</a>
+                <a href="index.html#demo" class="btn btn-primary">Get Started Free</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="pp-hero">
+        <div class="container" style="position:relative;z-index:2;">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                Back to Home
+            </a>
+            <h1>GDPR <span>Compliance</span></h1>
+            <div class="pp-meta">
+                <span class="pp-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+                    Effective: 1 May 2026
+                </span>
+                <span class="pp-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Techstuff Pvt Ltd
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <div class="pp-body">
+        <div class="pp-layout">
+            <aside class="pp-toc">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#s1">1. Overview</a></li>
+                    <li><a href="#s2">2. Our Role Under GDPR</a></li>
+                    <li><a href="#s3">3. Legal Basis for Processing</a></li>
+                    <li><a href="#s4">4. Data We Process</a></li>
+                    <li><a href="#s5">5. Your Rights</a></li>
+                    <li><a href="#s6">6. Data Transfers</a></li>
+                    <li><a href="#s7">7. Data Retention</a></li>
+                    <li><a href="#s8">8. Data Security</a></li>
+                    <li><a href="#s9">9. Data Breach Notification</a></li>
+                    <li><a href="#s10">10. Contact & DPO</a></li>
+                </ul>
+            </aside>
+
+            <article class="pp-article">
+                <div class="pp-section">
+                    <p>This page describes how <strong style="color:#fff;">Techstuff Pvt Ltd</strong> (operating PrimeHR) approaches compliance with the General Data Protection Regulation (EU) 2016/679 ("GDPR"). This applies to customers and users in the European Union (EU) and European Economic Area (EEA).</p>
+                </div>
+
+                <div class="pp-section" id="s1">
+                    <h2><span class="section-num">1</span> Overview</h2>
+                    <p>The GDPR is a comprehensive data protection law that governs how organisations collect, use, and store personal data of individuals in the EU/EEA. We are committed to processing personal data responsibly and in accordance with applicable data protection laws.</p>
+                    <div class="pp-highlight">If you are a resident of the EU or EEA, you have specific rights regarding your personal data that are described in this document.</div>
+                </div>
+
+                <div class="pp-section" id="s2">
+                    <h2><span class="section-num">2</span> Our Role Under GDPR</h2>
+                    <h3>Data Controller</h3>
+                    <p>When we collect your personal data directly (e.g. when you visit our website, sign up for a demo, or contact us), we act as a <strong style="color:#fff;">Data Controller</strong> — meaning we determine the purposes and means of processing.</p>
+                    <h3>Data Processor</h3>
+                    <p>When your employer (our customer) uses PrimeHR to manage your HR data, we act as a <strong style="color:#fff;">Data Processor</strong> — meaning we process data on behalf of and under the instructions of your employer. Your employer is the Data Controller in this scenario.</p>
+                    <p>We enter into a Data Processing Agreement (DPA) with all customers who require one for GDPR compliance.</p>
+                </div>
+
+                <div class="pp-section" id="s3">
+                    <h2><span class="section-num">3</span> Legal Basis for Processing</h2>
+                    <p>We process personal data under the following legal bases as defined in Article 6 GDPR:</p>
+                    <ul>
+                        <li><strong>Contract:</strong> Processing necessary to perform our contract with you or your employer</li>
+                        <li><strong>Legitimate Interests:</strong> Processing for our legitimate business interests (e.g. fraud prevention, platform security) where not overridden by your rights</li>
+                        <li><strong>Legal Obligation:</strong> Processing required by applicable law (e.g. tax and employment law)</li>
+                        <li><strong>Consent:</strong> Where you have given explicit consent (e.g. marketing communications)</li>
+                    </ul>
+                </div>
+
+                <div class="pp-section" id="s4">
+                    <h2><span class="section-num">4</span> Data We Process</h2>
+                    <p>As a Data Processor on behalf of your employer, we may process the following categories of data:</p>
+                    <ul>
+                        <li>Identity data — name, employee code, designation</li>
+                        <li>Contact data — work email address</li>
+                        <li>Employment data — salary, attendance, leave, payslips</li>
+                        <li>Location data — GPS coordinates at time of attendance check-in/out</li>
+                        <li>Device data — device type, OS, used for attendance logging</li>
+                    </ul>
+                    <p>Full details of data processed are described in our <a href="privacy-policy.html" style="color:#EDA6A5;">Privacy Policy</a>.</p>
+                </div>
+
+                <div class="pp-section" id="s5">
+                    <h2><span class="section-num">5</span> Your Rights</h2>
+                    <p>Under the GDPR, EU/EEA residents have the following rights:</p>
+                    <div class="rights-grid">
+                        <div class="right-card"><h4>Right of Access</h4><p>Request a copy of the personal data we hold about you (Article 15)</p></div>
+                        <div class="right-card"><h4>Right to Rectification</h4><p>Request correction of inaccurate or incomplete personal data (Article 16)</p></div>
+                        <div class="right-card"><h4>Right to Erasure</h4><p>Request deletion of your personal data in certain circumstances (Article 17)</p></div>
+                        <div class="right-card"><h4>Right to Restriction</h4><p>Request that we restrict processing of your data (Article 18)</p></div>
+                        <div class="right-card"><h4>Right to Portability</h4><p>Receive your data in a structured, machine-readable format (Article 20)</p></div>
+                        <div class="right-card"><h4>Right to Object</h4><p>Object to processing based on legitimate interests (Article 21)</p></div>
+                    </div>
+                    <p>Since your employer is the Data Controller for employment-related data, many requests should be directed to your HR department in the first instance. We will assist our customers in fulfilling your rights requests within the required timeframes.</p>
+                </div>
+
+                <div class="pp-section" id="s6">
+                    <h2><span class="section-num">6</span> Data Transfers</h2>
+                    <p>PrimeHR is operated from India. If you are located in the EU/EEA, your personal data may be transferred to and processed in India, which is outside the European Economic Area.</p>
+                    <p>We ensure appropriate safeguards are in place for such transfers, including:</p>
+                    <ul>
+                        <li>Standard Contractual Clauses (SCCs) as approved by the European Commission</li>
+                        <li>Data Processing Agreements with our sub-processors that include appropriate transfer mechanisms</li>
+                    </ul>
+                </div>
+
+                <div class="pp-section" id="s7">
+                    <h2><span class="section-num">7</span> Data Retention</h2>
+                    <p>We retain personal data only for as long as necessary to fulfil the purposes for which it was collected, or as required by law. Retention periods are determined by:</p>
+                    <ul>
+                        <li>Your employer's HR data retention policies</li>
+                        <li>Applicable legal and regulatory requirements</li>
+                        <li>Our legitimate business needs (e.g. dispute resolution, audit trails)</li>
+                    </ul>
+                    <p>Upon contract termination, customer data is made available for export for 30 days, after which it is securely deleted.</p>
+                </div>
+
+                <div class="pp-section" id="s8">
+                    <h2><span class="section-num">8</span> Data Security</h2>
+                    <p>We implement appropriate technical and organisational measures to protect personal data, including:</p>
+                    <ul>
+                        <li>Encryption of data in transit using TLS/HTTPS</li>
+                        <li>Secure storage of authentication tokens using platform-native secure storage</li>
+                        <li>Access controls and role-based permissions</li>
+                        <li>Regular security reviews and vulnerability assessments</li>
+                    </ul>
+                </div>
+
+                <div class="pp-section" id="s9">
+                    <h2><span class="section-num">9</span> Data Breach Notification</h2>
+                    <p>In the event of a personal data breach that is likely to result in a risk to your rights and freedoms, we will:</p>
+                    <ul>
+                        <li>Notify our affected customers (Data Controllers) without undue delay and within 72 hours of becoming aware</li>
+                        <li>Provide all necessary information to assist customers in notifying the relevant supervisory authority and affected individuals</li>
+                        <li>Document all breaches in our internal breach register</li>
+                    </ul>
+                </div>
+
+                <div class="pp-section" id="s10">
+                    <h2><span class="section-num">10</span> Contact & DPO</h2>
+                    <p>For GDPR-related enquiries, to exercise your rights, or to request a Data Processing Agreement, please contact us:</p>
+                    <div class="pp-contact-card">
+                        <p><strong style="color:#fff;">Techstuff Pvt Ltd</strong></p>
+                        <p>Email: <a href="mailto:support@techstuff.cloud">support@techstuff.cloud</a></p>
+                        <p>Website: <a href="https://primehr.in/support" target="_blank" rel="noopener">https://primehr.in/support</a></p>
+                        <p style="margin-top:12px; font-size:13px; color:rgba(200,200,200,0.6);">You also have the right to lodge a complaint with your local supervisory authority if you believe we have not handled your data correctly.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><img src="images/PrimeHR-text.png" alt="PrimeHR Logo" class="brand-logo" loading="lazy"></a>
+                    <p>The modern payroll and HRMS platform for growing businesses.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.072H5.059z"/></svg></a>
+                        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-links"><h4>Product</h4><ul><li><a href="index.html#features">Features</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="index.html#integrations">Integrations</a></li><li><a href="#">Updates</a></li></ul></div>
+                <div class="footer-links"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="footer-links"><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">Documentation</a></li><li><a href="#">API Reference</a></li><li><a href="#">Status</a></li></ul></div>
+                <div class="footer-links"><h4>Legal</h4><ul><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms-of-service.html">Terms of Service</a></li><li><a href="cookie-policy.html">Cookie Policy</a></li><li><a href="gdpr.html">GDPR</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 PrimeHR Payroll. All rights reserved.</p><p>Made with ❤️ in India</p></div>
+        </div>
+    </footer>
+
+    <script src="script.min.js" defer></script>
+    <script>
+        (function () {
+            const sections = document.querySelectorAll('.pp-section[id]');
+            const tocLinks = document.querySelectorAll('.pp-toc ul li a');
+            if (!sections.length || !tocLinks.length) return;
+            function setActive(id) { tocLinks.forEach(function(a){ a.classList.toggle('toc-active', a.getAttribute('href')==='#'+id); }); }
+            const observer = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting) setActive(e.target.id); }); }, { rootMargin:'-20% 0px -60% 0px', threshold:0 });
+            sections.forEach(function(s){ observer.observe(s); });
+            if (sections[0]) setActive(sections[0].id);
+        })();
+    </script>
+</body>
+</html>

@@ -1,12 +1,45 @@
 {
-    "redirects": [
-      { "source": "/login", "destination": "https://app.primehr.in/login", "permanent": false },
-      { "source": "/org-signin", "destination": "https://app.primehr.in/org-signin", "permanent": false },
-      { "source": "/org-signup", "destination": "https://app.primehr.in/org-signup", "permanent": false },
-      { "source": "/find-org", "destination": "https://app.primehr.in/find-org", "permanent": false },
-      { "source": "/register", "destination": "https://app.primehr.in/register", "permanent": false },
-      { "source": "/signup", "destination": "https://app.primehr.in/signup", "permanent": false },
-      { "source": "/reset-password", "destination": "https://app.primehr.in/reset-password", "permanent": false },
-      { "source": "/reset-password/request", "destination": "https://app.primehr.in/reset-password/request", "permanent": false }
-    ]
- }
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/login",
+      "destination": "https://app.primehr.in/login",
+      "permanent": false
+    },
+    {
+      "source": "/org-signin",
+      "destination": "https://app.primehr.in/org-signin",
+      "permanent": false
+    },
+    {
+      "source": "/org-signup",
+      "destination": "https://app.primehr.in/org-signup",
+      "permanent": false
+    },
+    {
+      "source": "/find-org",
+      "destination": "https://app.primehr.in/find-org",
+      "permanent": false
+    },
+    {
+      "source": "/register",
+      "destination": "https://app.primehr.in/register",
+      "permanent": false
+    },
+    {
+      "source": "/signup",
+      "destination": "https://app.primehr.in/signup",
+      "permanent": false
+    },
+    {
+      "source": "/reset-password",
+      "destination": "https://app.primehr.in/reset-password",
+      "permanent": false
+    },
+    {
+      "source": "/reset-password/request",
+      "destination": "https://app.primehr.in/reset-password/request",
+      "permanent": false
+    }
+  ]
+}
